@@ -8,9 +8,13 @@
 #include <unistd.h>
 
 #include "erd_profile.h"
+// #include <stdalign.h>
+#include <x86intrin.h>
 
 
-__declspec(align(256)) uint64_t erd_ticks[MAXTHREADS][erd__num_ticks + 8];
+// __declspec(align(256)) uint64_t erd_ticks[MAXTHREADS][erd__num_ticks + 8];
+// alignas(256) uint64_t erd_ticks[MAXTHREADS][erd__num_ticks + 8];
+uint64_t erd_ticks[MAXTHREADS][erd__num_ticks + 8] __attribute__((aligned(256)));
 
 static char ticks_name[erd__num_ticks][128] = 
 {

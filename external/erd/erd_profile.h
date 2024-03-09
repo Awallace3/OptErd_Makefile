@@ -2,6 +2,7 @@
 #define __ERD_PROFILE_H__
 
 #include <stdint.h>
+// #include <stdalign.h>
 
 
 #define MAXTHREADS     244
@@ -41,7 +42,9 @@ typedef enum
 } ErdTicks_t;
 
 
-extern __declspec(align(256)) uint64_t erd_ticks[MAXTHREADS][erd__num_ticks + 8];
+// extern __declspec(align(256)) uint64_t erd_ticks[MAXTHREADS][erd__num_ticks + 8];
+// alignas(256) uint64_t erd_ticks[MAXTHREADS][erd__num_ticks + 8];
+uint64_t erd_ticks[MAXTHREADS][erd__num_ticks + 8] __attribute__((aligned(256)));
 
 
 void erd_reset_profile (void);
