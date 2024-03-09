@@ -36,3 +36,14 @@ add_custom_command(TARGET erd POST_BUILD
 
 # Handling clean
 set_property(DIRECTORY PROPERTY ADDITIONAL_MAKE_CLEAN_FILES "${OBJ_DIR}/*.o;*~;*.a")
+
+# Specify the public headers for the libcint library
+file(GLOB PUBLIC_HEADERS "*.h")
+
+# Define where to install the headers
+install(FILES ${PUBLIC_HEADERS} DESTINATION include)
+
+install(TARGETS erd
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+        RUNTIME DESTINATION bin)

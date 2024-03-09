@@ -26,4 +26,13 @@ add_custom_command(TARGET oed POST_BUILD
 # Clean extra files (Note: CMake's clean target generally handles cleaning up most build artifacts)
 set_property(DIRECTORY PROPERTY ADDITIONAL_MAKE_CLEAN_FILES "*.o;*~;*.a")
 
+# Specify the public headers for the libcint library
+file(GLOB PUBLIC_HEADERS "*.h")
 
+# Define where to install the headers
+install(FILES ${PUBLIC_HEADERS} DESTINATION include)
+
+install(TARGETS oed
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+        RUNTIME DESTINATION bin)
