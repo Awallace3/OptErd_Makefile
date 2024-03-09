@@ -5,7 +5,7 @@ project(ERDLibrary)
 file(GLOB SRC "*.c" "*.f" "*.F")
 
 # Set compiler flags
-set(CMAKE_C_FLAGS "${CFLAGS} -D__ALIGNLEN__=${alignlen} -O3 --std=gnu99 -fopenmp")
+set(CMAKE_C_FLAGS "${CFLAGS} -D__ALIGNLEN__=${alignlen} -O3 --std=gnu99 -fopenmp -fPIC")
 set(CMAKE_Fortran_FLAGS "${FFLAGS}")
 
 # Option for architecture, default to non-MIC

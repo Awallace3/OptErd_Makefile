@@ -17,7 +17,8 @@ set(CMAKE_C_FLAGS "${CFLAGS}")
 
 # Create a static library from the source files
 add_library(oed STATIC ${SRC})
-set_target_properties(oed PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "../../lib")
+
+target_link_libraries(oed PRIVATE gfortran)
 
 # Post-build command to copy the library to a different directory
 add_custom_command(TARGET oed POST_BUILD
