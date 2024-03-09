@@ -28,7 +28,7 @@ endif()
 
 # Create a static library from sources
 add_library(erd STATIC ${SRC})
-set_target_properties(erd PROPERTIES OUTPUT_NAME ${ERDLIB} ARCHIVE_OUTPUT_DIRECTORY "../../lib")
+set_target_properties(erd PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "../../lib")
 
 # Custom command to copy erd_profile.h after build
 add_custom_command(TARGET erd POST_BUILD
