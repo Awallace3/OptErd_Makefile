@@ -11,7 +11,17 @@ if(arch STREQUAL "mic")
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "mic")
 endif()
 
+if (CMAKE_C_COMPILER_ID STREQUAL "GNU")
+    message(STATUS "GNU")
+    set(CMAKE_C_FLAGS "${CFLAGS} --std=gnu99 -fopenmp")
+elseif (CMAKE_C_COMPILER_ID STREQUAL "Intel")
+    message(STATUS "Intel")
+    set(CMAKE_C_FLAGS "${CFLAGS} -qopenmp")
+endif()
+set(CMAKE_C_FLAGS "${CFLAGS} -D__ALIGNLEN__=${alignlen} -O3 -fPIC")
+
 # Compiler flags
+# set(CMAKE_Fortran_PREPROCESS_SOURCE ON)
 set(CMAKE_Fortran_FLAGS "${FFLAGS}")
 set(CMAKE_C_FLAGS "${CFLAGS}")
 

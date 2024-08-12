@@ -1,11 +1,15 @@
 cmake_minimum_required(VERSION 3.10)
-project(ERDLibrary)
+project(ERDLibrary LANGUAGES C Fortran)
 
 # Collect source files
 file(GLOB SRC "*.c" "*.f" "*.F")
 
 # Set compiler flags
-set(CMAKE_C_FLAGS "${CFLAGS} -D__ALIGNLEN__=${alignlen} -O3 --std=gnu99 -fopenmp -fPIC")
+if (CMAKE_C_COMPILER_ID STREQUAL "GNU")
+    set(CMAKE_C_FLAGS "${CFLAGS} -D__ALIGNLEN__=${alignlen} -O3 --std=gnu99 -fopenmp -fPIC")
+elseif (CMAKE_C_COMPILER_ID STREQUAL "Intel")
+    set(CMAKE_C_FLAGS "${CFLAGS} -D__ALIGNLEN__=${alignlen} -O3 -qopenmp -fPIC")
+endif()
 set(CMAKE_Fortran_FLAGS "${FFLAGS}")
 
 # Option for architecture, default to non-MIC
