@@ -34,6 +34,8 @@ endif()
 add_library(erd STATIC ${SRC})
 set_target_properties(erd PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "../../lib")
 
+target_link_libraries(erd PRIVATE)
+
 # Custom command to copy erd_profile.h after build
 add_custom_command(TARGET erd POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/erd_profile.h" "${CMAKE_CURRENT_SOURCE_DIR}/../../include")
